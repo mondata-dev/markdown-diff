@@ -1,4 +1,4 @@
-import DiffMatchPatch from 'diff-match-path';
+import DiffMatchPatch from 'diff-match-patch';
 import { Helper } from './helper';
 
 export class Generator {
