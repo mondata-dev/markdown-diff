@@ -29,15 +29,15 @@ export class Generator {
       const prefix = part.added ? '<ins>' : part.removed ? '<del>' : '';
       const posfix = part.added ? '</ins>' : part.removed ? '</del>' : '';
 
-      if (Helper.isTitle(part)) {
-        output.push(this.titleDiff(value, prefix, posfix));
-      } else if (Helper.isTable(part)) {
-        output.push(this.tableDiff(value, prefix, posfix));
-      } else if (Helper.isList(part)) {
-        output.push(this.listDiff(value, prefix, posfix));
-      } else {
+      // if (Helper.isTitle(part)) {
+      //   output.push(this.titleDiff(value, prefix, posfix));
+      // } else if (Helper.isTable(part)) {
+      //   output.push(this.tableDiff(value, prefix, posfix));
+      // } else if (Helper.isList(part)) {
+      //   output.push(this.listDiff(value, prefix, posfix));
+      // } else {
         output.push(`${prefix}${value}${posfix}`);
-      }
+      // }
     }
 
     return output.join('');
