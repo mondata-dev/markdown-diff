@@ -1,4 +1,4 @@
-import * as JsDiff from 'diff';
+import DiffMatchPatch from 'diff-match-path';
 import { Helper } from './helper';
 
 export class Generator {
@@ -9,10 +9,21 @@ export class Generator {
    * exec
    */
   public exec(oldString: string, newString: string) {
+    const dmp = new DiffMatchPatch();
     const output: string[] = [];
-    const parts = JsDiff.diffChars(oldString, newString);
+    const parts = dmp.diff_main(oldString, newString);
 
-    for (const part of parts) {
+    // make it human readable
+    dmp.diff_cleanupSemantic(parts);
+
+    for (const dmpPart of parts) {
+      // convert to legacy JsDiff format:
+      const part = {
+        added: dmpPart[0] === DiffMatchPatch.DIFF_INSERT,
+        removed: dmpPart[0] === DiffMatchPatch.DIFF_DELETE,
+        value: dmpPart[1],
+      };
+
       const value = part.value;
 
       const prefix = part.added ? '<ins>' : part.removed ? '<del>' : '';
