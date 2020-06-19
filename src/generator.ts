@@ -1,4 +1,4 @@
-import DiffMatchPatch from 'diff-match-patch';
+import * as DiffMatchPatch from 'diff-match-patch';
 import { Helper } from './helper';
 
 export class Generator {
@@ -9,7 +9,7 @@ export class Generator {
    * exec
    */
   public exec(oldString: string, newString: string) {
-    const dmp = new DiffMatchPatch();
+    const dmp = new DiffMatchPatch.diff_match_patch();
     const output: string[] = [];
     const parts = dmp.diff_main(oldString, newString);
 
