@@ -14,4 +14,10 @@ describe('Title', () => {
     const diff = markdownDiff(oldStr, newStr);
     assert.equal(diff, '## ele one\n## ele two\n## <ins>ele three</ins>\n## <ins>ele four</ins>');
   })
+  it('With changed size', () => {
+    const oldStr = '#### ele one\n## ele two';
+    const newStr = '## ele one\n#### ele two';
+    const diff = markdownDiff(oldStr, newStr);
+    assert.equal(diff, '#### <del>ele one</del>\n## <ins>ele one</ins>\n## <del>ele two</del>\n#### <ins>ele two</ins>');
+  })
 })
